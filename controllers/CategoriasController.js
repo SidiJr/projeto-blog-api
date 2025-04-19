@@ -1,9 +1,9 @@
-import Categoria from '../models/CategoriasModel.js';
+import Categorias from '../models/CategoriasModel.js';
 
-const categoriaController = {
+const categoriasController = {
   listarCategorias: async (req, res) => {
     try {
-      const categorias = await Categoria.findAll();
+      const categorias = await Categorias.findAll();
       res.json(categorias);
     } catch (error) {
       res.status(500).json({ erro: "Erro ao buscar categorias" });
@@ -13,7 +13,7 @@ const categoriaController = {
   buscarCategoriaPorId: async (req, res) => {
     const { id } = req.params;
     try {
-      const categoria = await Categoria.findByPk(id);
+      const categoria = await Categorias.findByPk(id);
       if (!categoria) {
         return res.status(404).json({ erro: "Categoria não encontrada" });
       }
@@ -26,7 +26,7 @@ const categoriaController = {
   criarCategoria: async (req, res) => {
     const { nome, descricao } = req.body;
     try {
-      const novaCategoria = await Categoria.create({ nome, descricao });
+      const novaCategoria = await Categorias.create({ nome, descricao });
       res.status(201).json(novaCategoria);
     } catch (error) {
       res.status(500).json({ erro: "Erro ao criar categoria" });
@@ -38,7 +38,7 @@ const categoriaController = {
     const { nome, descricao } = req.body;
 
     try {
-      const categoria = await Categoria.findByPk(id);
+      const categoria = await Categorias.findByPk(id);
       if (!categoria) {
         return res.status(404).json({ erro: "Categoria não encontrada" });
       }
@@ -57,7 +57,7 @@ const categoriaController = {
     const { id } = req.params;
 
     try {
-      const categoria = await Categoria.findByPk(id);
+      const categoria = await Categorias.findByPk(id);
       if (!categoria) {
         return res.status(404).json({ erro: "Categoria não encontrada" });
       }
@@ -70,4 +70,4 @@ const categoriaController = {
   },
 };
 
-export default categoriaController;
+export default categoriasController;

@@ -16,8 +16,12 @@ app.use(express.json());
 
 // Rotas
 import categoriasRotas from "./routes/CategoriasRoutes.js";
+import autoresRotas from "./routes/AutoresRoutes.js";
+import postsRotas from "./routes/PostsRoutes.js";
 
 app.use("/categorias", categoriasRotas);
+app.use("/autores", autoresRotas);
+app.use("/posts", postsRotas);
 
 async function start() {
   try {
