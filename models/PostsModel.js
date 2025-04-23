@@ -14,6 +14,9 @@ const PostsModel = sequelize.define(
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    imagem: {
+      type: DataTypes.STRING,
+    },
     data_criacao: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,

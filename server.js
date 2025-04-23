@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import sequelize from "./config/db.js";
+import path from "path";
 
 const app = express();
 const PORT = 3000;
@@ -13,6 +14,8 @@ import "./models/PostsModel.js";
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+app.use('/uploads', express.static(path.resolve('uploads')));
 
 // Rotas
 import categoriasRotas from "./routes/CategoriasRoutes.js";

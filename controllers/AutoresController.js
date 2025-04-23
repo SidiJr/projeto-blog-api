@@ -1,12 +1,14 @@
-import Autores from '../models/AutoresModel.js';
+import Autores from "../models/AutoresModel.js";
 
 const autoresController = {
   listarAutores: async (req, res) => {
     try {
-      const autores = await Autores.findAll();
+      const autores = await Autores.findAll({
+        order: [['id', 'DESC']],
+      });
       res.json(autores);
     } catch (error) {
-      res.status(500).json({ erro: "Erro ao buscar autores" });
+      res.status(500).json({ message: "Erro ao buscar autores." });
     }
   },
 
@@ -15,41 +17,48 @@ const autoresController = {
     try {
       const autor = await Autores.findByPk(id);
       if (!autor) {
-        return res.status(404).json({ erro: "Autor não encontrado" });
+        return res.status(404).json({ message: "Autor não encontrado." });
       }
       res.json(autor);
     } catch (error) {
-      res.status(500).json({ erro: "Erro ao buscar autor" });
+      res.status(500).json({ message: "Erro ao buscar autor." });
     }
   },
 
   criarAutor: async (req, res) => {
-    const { nome, biografia } = req.body;
+
+    const { nome, email } = req.body;
     try {
-      const novoAutor = await Autores.create({ nome, biografia });
-      res.status(201).json(novoAutor);
+      const novoAutor = await Autores.create({ nome, email });
+      res.status(201).json({
+        message: "Autor criado com sucesso.",
+        data: novoAutor,
+      });
     } catch (error) {
-      res.status(500).json({ erro: "Erro ao criar autor" });
+      res.status(500).json({ message: "Erro ao criar autor." });
     }
   },
 
   atualizarAutor: async (req, res) => {
     const { id } = req.params;
-    const { nome, biografia } = req.body;
+    const { nome, email } = req.body;
 
     try {
       const autor = await Autores.findByPk(id);
       if (!autor) {
-        return res.status(404).json({ erro: "Autor não encontrado" });
+        return res.status(404).json({ message: "Autor não encontrado." });
       }
 
       autor.nome = nome;
-      autor.biografia = biografia;
+      autor.email = email;
       await autor.save();
 
-      res.json(autor);
+      res.status(201).json({
+        message: "Autor atualizado com sucesso.",
+        data: autor,
+      });
     } catch (error) {
-      res.status(500).json({ erro: "Erro ao atualizar autor" });
+      res.status(500).json({ message: "Erro ao atualizar autor." });
     }
   },
 
@@ -59,13 +68,13 @@ const autoresController = {
     try {
       const autor = await Autores.findByPk(id);
       if (!autor) {
-        return res.status(404).json({ erro: "Autor não encontrado" });
+        return res.status(404).json({ messsage: "Autor não encontrado." });
       }
 
       await autor.destroy();
-      res.json({ mensagem: "Autor deletado com sucesso" });
+      res.json({ message: "Autor deletado com sucesso.", data: {} });
     } catch (error) {
-      res.status(500).json({ erro: "Erro ao deletar autor" });
+      res.status(500).json({ message: "Erro ao deletar autor." });
     }
   },
 };

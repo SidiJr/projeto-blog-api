@@ -1,12 +1,14 @@
-import Categorias from '../models/CategoriasModel.js';
+import Categorias from "../models/CategoriasModel.js";
 
 const categoriasController = {
   listarCategorias: async (req, res) => {
     try {
-      const categorias = await Categorias.findAll();
+      const categorias = await Categorias.findAll({
+        order: [["id", "DESC"]],
+      });
       res.json(categorias);
     } catch (error) {
-      res.status(500).json({ erro: "Erro ao buscar categorias" });
+      res.status(500).json({ message: "Erro ao buscar categorias." });
     }
   },
 
@@ -15,11 +17,11 @@ const categoriasController = {
     try {
       const categoria = await Categorias.findByPk(id);
       if (!categoria) {
-        return res.status(404).json({ erro: "Categoria não encontrada" });
+        return res.status(404).json({ message: "Categoria não encontrada." });
       }
       res.json(categoria);
     } catch (error) {
-      res.status(500).json({ erro: "Erro ao buscar categoria" });
+      res.status(500).json({ message: "Erro ao buscar categoria." });
     }
   },
 
@@ -27,9 +29,12 @@ const categoriasController = {
     const { nome, descricao } = req.body;
     try {
       const novaCategoria = await Categorias.create({ nome, descricao });
-      res.status(201).json(novaCategoria);
+      res.status(201).json({
+        message: "Categoria criada com sucesso.",
+        data: novaCategoria,
+      });
     } catch (error) {
-      res.status(500).json({ erro: "Erro ao criar categoria" });
+      res.status(500).json({ message: "Erro ao criar categoria." });
     }
   },
 
@@ -40,16 +45,19 @@ const categoriasController = {
     try {
       const categoria = await Categorias.findByPk(id);
       if (!categoria) {
-        return res.status(404).json({ erro: "Categoria não encontrada" });
+        return res.status(404).json({ message: "Categoria não encontrada." });
       }
 
       categoria.nome = nome;
       categoria.descricao = descricao;
       await categoria.save();
 
-      res.json(categoria);
+      res.status(201).json({
+        message: "Categoria atualizada com sucesso.",
+        data: categoria,
+      });
     } catch (error) {
-      res.status(500).json({ erro: "Erro ao atualizar categoria" });
+      res.status(500).json({ message: "Erro ao atualizar categoria." });
     }
   },
 
@@ -59,13 +67,13 @@ const categoriasController = {
     try {
       const categoria = await Categorias.findByPk(id);
       if (!categoria) {
-        return res.status(404).json({ erro: "Categoria não encontrada" });
+        return res.status(404).json({ message: "Categoria não encontrada." });
       }
 
       await categoria.destroy();
-      res.json({ mensagem: "Categoria deletada com sucesso" });
+      res.json({ message: "Categoria deletada com sucesso.", data: {} });
     } catch (error) {
-      res.status(500).json({ erro: "Erro ao deletar categoria" });
+      res.status(500).json({ message: "Erro ao deletar categoria." });
     }
   },
 };

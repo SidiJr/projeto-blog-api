@@ -1,8 +1,8 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../config/db.js';
+import { DataTypes } from "sequelize";
+import sequelize from "../config/db.js";
 
 const AutoresModel = sequelize.define(
-  'Autor',
+  "Autor",
   {
     nome: {
       type: DataTypes.STRING,
@@ -11,13 +11,10 @@ const AutoresModel = sequelize.define(
     email: {
       type: DataTypes.STRING,
       unique: true,
-      validate: {
-        isEmail: true,
-      },
     },
   },
   {
-    tableName: 'autores',
+    tableName: "autores",
     timestamps: false,
   }
 );
