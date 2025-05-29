@@ -4,7 +4,7 @@ const autoresController = {
   listarAutores: async (req, res) => {
     try {
       const autores = await Autores.findAll({
-        order: [['id', 'DESC']],
+        order: [["id", "DESC"]],
       });
       res.json(autores);
     } catch (error) {
@@ -26,7 +26,6 @@ const autoresController = {
   },
 
   criarAutor: async (req, res) => {
-
     const { nome, email } = req.body;
     try {
       const novoAutor = await Autores.create({ nome, email });

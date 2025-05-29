@@ -8,7 +8,13 @@
     "sequelize-cli": "^6.6.3"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "@eslint/js": "^9.27.0",
+    "eslint": "^9.27.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.0",
+    "globals": "^16.2.0",
+    "nodemon": "^3.1.9",
+    "prettier": "^3.5.3"
   },
   "name": "projeto-blog-api",
   "version": "1.0.0",
@@ -16,7 +22,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\""
   },
   "keywords": [],
   "author": "",

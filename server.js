@@ -15,7 +15,7 @@ import "./models/PostsModel.js";
 app.use(cors());
 app.use(express.json());
 
-app.use('/uploads', express.static(path.resolve('uploads')));
+app.use("/uploads", express.static(path.resolve("uploads")));
 
 // Rotas
 import categoriasRotas from "./routes/CategoriasRoutes.js";

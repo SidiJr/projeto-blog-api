@@ -1,8 +1,8 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../config/db.js';
+import { DataTypes } from "sequelize";
+import sequelize from "../config/db.js";
 
 const CategoriasModel = sequelize.define(
-  'Categoria',
+  "Categoria",
   {
     nome: {
       type: DataTypes.STRING,
@@ -14,7 +14,7 @@ const CategoriasModel = sequelize.define(
     },
   },
   {
-    tableName: 'categorias',
+    tableName: "categorias",
     timestamps: false,
   }
 );
