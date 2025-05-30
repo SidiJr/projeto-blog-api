@@ -1,45 +1,9 @@
-import express from "express";
-import cors from "cors";
-import sequelize from "./config/db.js";
-import path from "path";
+import "dotenv/config"; // importa e já executa o dotenv.config()
 
-const app = express();
-const PORT = 3000;
+import app from "./src/app.js"; // importe o app
 
-// Models
-import "./models/CategoriasModel.js";
-import "./models/AutoresModel.js";
-import "./models/PostsModel.js";
+const PORT = process.env.PORT || 3000;
 
-// Middleware
-app.use(cors());
-app.use(express.json());
-
-app.use("/uploads", express.static(path.resolve("uploads")));
-
-// Rotas
-import categoriasRotas from "./routes/CategoriasRoutes.js";
-import autoresRotas from "./routes/AutoresRoutes.js";
-import postsRotas from "./routes/PostsRoutes.js";
-
-app.use("/categorias", categoriasRotas);
-app.use("/autores", autoresRotas);
-app.use("/posts", postsRotas);
-
-async function start() {
-  try {
-    await sequelize.authenticate();
-    console.log("Conectado ao banco de dados com sucesso.");
-
-    await sequelize.sync();
-    console.log("Modelos sincronizados.");
-
-    app.listen(PORT, () => {
-      console.log(`Servidor rodando em http://localhost:${PORT}`);
-    });
-  } catch (error) {
-    console.error("Erro ao iniciar a aplicação:", error);
-  }
-}
-
-start();
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});

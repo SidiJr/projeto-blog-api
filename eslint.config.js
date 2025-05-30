@@ -15,13 +15,13 @@ export default defineConfig([
       prettier: prettierPlugin,
     },
     rules: {
-      // Suas regras personalizadas
       "prefer-const": "error",
       "no-console": "warn",
       "consistent-return": "warn",
       "prefer-template": "warn",
-      // Regras do Prettier via ESLint
       "prettier/prettier": "error",
+      "linebreak-style": ["error", "unix"],
+      "prettier": ["error", { endOfLine: "lf" }],
     },
   },
 ]);
