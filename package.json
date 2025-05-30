@@ -1,11 +1,12 @@
 {
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "helmet": "^8.1.0",
     "multer": "^1.4.5-lts.2",
     "mysql2": "^3.14.1",
-    "sequelize": "^6.37.7",
-    "sequelize-cli": "^6.6.3"
+    "sequelize": "^6.37.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.27.0",
@@ -14,7 +15,8 @@
     "eslint-plugin-prettier": "^5.4.0",
     "globals": "^16.2.0",
     "nodemon": "^3.1.9",
-    "prettier": "^3.5.3"
+    "prettier": "^3.5.3",
+    "sequelize-cli": "^6.6.3"
   },
   "name": "projeto-blog-api",
   "version": "1.0.0",

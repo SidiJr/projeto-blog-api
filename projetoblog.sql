@@ -42,8 +42,8 @@ INSERT INTO autores (nome, email) VALUES
 -- Adicionar comentários e likes
 -- Criar migrations e seeders
 
-CREATE DATABASE IF NOT EXISTS projetoblog;
-USE projetoblog;
+CREATE DATABASE IF NOT EXISTS projeto_blog;
+USE projeto_blog;
 
 -- Tabela de categorias
 CREATE TABLE categorias (
@@ -56,6 +56,7 @@ CREATE TABLE categorias (
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
+    sobrenome VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     senha_hash VARCHAR(255) NOT NULL
 );
