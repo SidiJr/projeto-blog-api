@@ -6,11 +6,13 @@ function errorMiddleware(err, req, res, next) {
 
   // Define o código de status da resposta: usa o informado no erro ou 500 (erro interno) como padrão
   const statusCode = err.statusCode || 500;
+  const message = err.isOperational ? err.message : "Erro interno no servidor";
 
   // Retorna uma resposta JSON padronizada com a mensagem de erro e o status
   res.status(statusCode).json({
-    error: err.message || "Erro interno no servidor",
+    data: null,
     status: statusCode,
+    message,
   });
 }
 
