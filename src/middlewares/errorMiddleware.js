@@ -1,6 +1,7 @@
 // Middleware para captura de erros em toda a aplicação
 function errorMiddleware(err, req, res, next) {
   // Exibe o erro completo no console para depuração
+  // eslint-disable-next-line no-console
   console.error("[ERRO]:", err.stack);
 
   // Define o código de status da resposta: usa o informado no erro ou 500 (erro interno) como padrão
@@ -13,4 +14,4 @@ function errorMiddleware(err, req, res, next) {
   });
 }
 
-export default errorMiddleware;
+module.exports = errorMiddleware;

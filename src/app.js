@@ -1,18 +1,18 @@
-import express, { json } from "express";
-import cors from "cors";
-import helmet from "helmet";
-import errorMiddleware from "./middlewares/errorMiddleware.js";
-// import userRoutes from "./routes/userRoutes";
+const express = require("express");
+const cors = require("cors");
+const helmet = require("helmet");
+const errorMiddleware = require("./middlewares/errorMiddleware.js");
+// const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
 app.use(cors());
 app.use(helmet());
-app.use(json());
+app.use(express.json());
 
-//ROTAS
+// ROTAS
 // app.use("/users", userRoutes);
 
 app.use(errorMiddleware);
 
-export default app;
+module.exports = app;

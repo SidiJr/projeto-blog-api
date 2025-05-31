@@ -1,6 +1,7 @@
 "use strict";
-import { Model } from "sequelize";
-export default (sequelize, DataTypes) => {
+const { Model } = require("sequelize");
+
+module.exports = (sequelize, DataTypes) => {
   class PostLike extends Model {
     /**
      * Helper method for defining associations.
