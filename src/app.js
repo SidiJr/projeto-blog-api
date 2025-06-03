@@ -3,6 +3,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const errorMiddleware = require("./middlewares/errorMiddleware.js");
 
+const authRoutes = require("./routes/authRoutes");
 const categoriasRouter = require("./routes/categoriasRoutes.js");
 const postsRouter = require("./routes/postsRoutes.js");
 const usuariosRouter = require("./routes/usuariosRoutes.js");
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use("/uploads", express.static("uploads"));
 
 // ROTAS
+app.use("/", authRoutes);
 app.use("/categorias", categoriasRouter);
 app.use("/posts", postsRouter);
 app.use("/usuarios", usuariosRouter);
