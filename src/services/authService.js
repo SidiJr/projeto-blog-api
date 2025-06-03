@@ -24,14 +24,15 @@ async function login(email, senha) {
   );
 
   return {
-    usuario: {
-      id: usuario.id,
-      nome: usuario.nome,
-      sobrenome: usuario.sobrenome,
-      email: usuario.email,
-      role: usuario.role,
-    },
-    token,
+      data: {
+        id: usuario.id,
+        nome: usuario.nome,
+        sobrenome: usuario.sobrenome,
+        email: usuario.email,
+        role: usuario.role,
+      },
+      token,
+      message: "Login realizado com sucesso!",
   };
 }
 
