@@ -13,7 +13,9 @@ const usuariosRouter = require("./routes/usuariosRoutes.js");
 const app = express();
 
 app.use(cors());
-app.use(helmet());
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" }
+}));
 app.use(express.json());
 
 // Upload de imagens
