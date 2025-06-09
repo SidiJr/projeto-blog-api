@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
 
       Comentario.belongsTo(models.Usuario, {
         foreignKey: "usuario_id",
-        as: "autor",
+        as: "usuario",
       });
     }
   }

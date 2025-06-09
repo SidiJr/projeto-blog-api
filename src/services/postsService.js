@@ -1,11 +1,17 @@
-const { Post } = require("../app/models");
+const { Post, Usuario } = require("../app/models");
 const AppError = require("../utils/AppError");
 const fs = require("fs");
 const path = require("path");
 
 const postsService = {
   async index() {
-    const posts = await Post.findAll();
+    const posts = await Post.findAll({
+      include: {
+        model: Usuario,
+        as: "usuario",
+        attributes: ["nome"],
+      },
+    });
 
     if (!posts) {
       throw new AppError("Nenhum post encontrado.", 404);
