@@ -8,7 +8,7 @@ const router = Router();
 
 router.get("/", usuariosController.index);
 router.get("/:id", usuariosController.show);
-router.post("/", autenticarToken,  validate(usuarioSchema), usuariosController.store);
+router.post("/", validate(usuarioSchema), usuariosController.store);
 router.put("/:id", autenticarToken, validate(usuarioSchema), usuariosController.update);
 router.delete("/:id", autenticarToken, usuariosController.destroy);
 

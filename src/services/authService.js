@@ -33,6 +33,7 @@ async function login(email, senha) {
       },
       token,
       message: "Login realizado com sucesso!",
+      status: 200,
   };
 }
 
