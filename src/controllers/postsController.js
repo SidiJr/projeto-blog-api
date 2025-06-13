@@ -4,7 +4,9 @@ const postsController = {
   async index(req, res, next) {
     // Listar posts
     try {
-      const posts = await postsService.index();
+      const { categoriaId } = req.query;
+
+      const posts = await postsService.index(categoriaId);
       res.status(200).json({
         data: posts,
         status: 200,

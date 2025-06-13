@@ -4,13 +4,21 @@ const fs = require("fs");
 const path = require("path");
 
 const postsService = {
-  async index() {
+  async index(categoriaId) {
+    const where = {};
+
+    if (categoriaId && categoriaId !== "null") {
+      where.categoria_id = categoriaId;
+    }
+
     const posts = await Post.findAll({
+      where,
       include: {
         model: Usuario,
         as: "usuario",
         attributes: ["nome"],
       },
+      order: [["createdAt", "DESC"]],
     });
 
     if (!posts) {
