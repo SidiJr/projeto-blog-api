@@ -4,7 +4,8 @@ const categoriasController = {
   async index(req, res, next) {
     // Listar categorias
     try {
-      const categorias = await categoriasService.index();
+      const {searchParams} = req.query;
+      const categorias = await categoriasService.index(searchParams);
       res.status(200).json({
         data: categorias,
         status: 200,

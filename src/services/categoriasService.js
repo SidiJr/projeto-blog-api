@@ -1,9 +1,18 @@
+const { Op } = require("sequelize");
 const { Categoria } = require("../app/models");
 const AppError = require("../utils/AppError");
 
 const categoriasService = {
-  async index() {
-    const categorias = await Categoria.findAll();
+  async index(searchParams) {
+    const where = {};
+
+    if (searchParams) {
+      where.nome = {
+        [Op.like]: `%${searchParams}%`,
+      };
+    }
+
+    const categorias = await Categoria.findAll({ where });
 
     if (!categorias) {
       throw new AppError("Nenhuma categoria encontrada.", 404);
