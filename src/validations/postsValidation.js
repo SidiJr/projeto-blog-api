@@ -1,6 +1,6 @@
 const Joi = require("joi");
 
-const postSchema = Joi.object({
+const createPostSchema = Joi.object({
   titulo: Joi.string().required().messages({
     "any.required": "O campo 'título' é obrigatório.",
     "string.base": "O campo 'título' deve ser um texto.",
@@ -27,4 +27,24 @@ const postSchema = Joi.object({
   }),
 });
 
-module.exports = postSchema;
+const updatePostSchema = Joi.object({
+  titulo: Joi.string().messages({
+    "string.base": "O campo 'título' deve ser um texto.",
+  }),
+
+  conteudo: Joi.string().messages({
+    "string.base": "O campo 'conteúdo' deve ser um texto.",
+  }),
+
+  data_criacao: Joi.date().messages({
+    "date.base": "O campo 'data_criacao' deve ser uma data válida.",
+  }),
+
+  categoria_id: Joi.any(),
+
+  usuario_id: Joi.any(),
+
+  imagem: Joi.any().optional(),
+}).min(1);
+
+module.exports = { createPostSchema, updatePostSchema };

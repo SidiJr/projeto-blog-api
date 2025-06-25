@@ -9,8 +9,20 @@ const router = Router();
 
 router.get("/", postsController.index);
 router.get("/:id", postsController.show);
-router.post("/", autenticarToken, upload.single("imagem"), validate(postSchema), postsController.store);
-router.put("/:id", autenticarToken, upload.single("imagem"), validate(postSchema), postsController.update);
+router.post(
+  "/",
+  autenticarToken,
+  upload.single("imagem"),
+  validate(postSchema.createPostSchema),
+  postsController.store
+);
+router.put(
+  "/:id",
+  autenticarToken,
+  upload.single("imagem"),
+  validate(postSchema.updatePostSchema),
+  postsController.update
+);
 router.delete("/:id", autenticarToken, postsController.destroy);
 
 module.exports = router;
