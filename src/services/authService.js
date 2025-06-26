@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const AppError = require("../utils/AppError");
 
 const JWT_SECRET = process.env.JWT_SECRET || "chaveSecreta";
-const JWT_EXPIRES_IN = "15m";
+const JWT_EXPIRES_IN = "1h";
 async function login(email, senha) {
   const usuario = await Usuario.findOne({ where: { email } });
 
