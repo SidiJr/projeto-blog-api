@@ -24,16 +24,16 @@ async function login(email, senha) {
   );
 
   return {
-      data: {
-        id: usuario.id,
-        nome: usuario.nome,
-        sobrenome: usuario.sobrenome,
-        email: usuario.email,
-        role: usuario.role,
-      },
-      token,
-      message: "Login realizado com sucesso!",
-      status: 200,
+    data: {
+      id: usuario.id,
+      nome: usuario.nome,
+      sobrenome: usuario.sobrenome,
+      email: usuario.email,
+      role: usuario.role,
+    },
+    token,
+    message: "Login realizado com sucesso!",
+    status: 200,
   };
 }
 

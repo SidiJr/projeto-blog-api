@@ -8,8 +8,18 @@ const router = Router();
 
 router.get("/", categoriasController.index);
 router.get("/:id", categoriasController.show);
-router.post("/", autenticarToken, validate(categoriaSchema), categoriasController.store);
-router.put("/:id", autenticarToken, validate(categoriaSchema), categoriasController.update);
+router.post(
+  "/",
+  autenticarToken,
+  validate(categoriaSchema),
+  categoriasController.store
+);
+router.put(
+  "/:id",
+  autenticarToken,
+  validate(categoriaSchema),
+  categoriasController.update
+);
 router.delete("/:id", autenticarToken, categoriasController.destroy);
 
 module.exports = router;

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const mensagensService = require("./services/mensagensService");
 const { Mensagem, Usuario } = require("./app/models");
 
@@ -27,7 +28,7 @@ function socketHandler(io) {
         // Emite a mensagem
         io.emit("mensagemRecebida", mensagemCompleta);
       } catch (error) {
-        console.error("Erro ao enviar mensagem via socket:", error);
+        console.log("Erro ao enviar mensagem via socket:", error);
         socket.emit("erroMensagem", {
           message: error.message || "Erro interno ao enviar mensagem.",
         });
